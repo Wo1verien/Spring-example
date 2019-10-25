@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+
+    <!-- bean definition & AOP specific configuration -->
+    <bean id="logging" class="com.cz.spring.aop.Logging"/>
+    <bean id="student" class="com.cz.spring.aop.Student">
+        <property name="age" value="11"/>
+        <property name="name" value="a"/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect id="log" ref="logging">
+            <aop:pointcut id="selectAll" expression="execution(* com.cz.spring.aop.*.*(..))"/>
+            <aop:before pointcut-ref="selectAll" method="beforeAdvice"/>
+            <aop:after method="afterAdvice" pointcut-ref="selectAll"/>
+            <aop:after-returning method="afterReturningAdvice" returning="retVal" pointcut-ref="selectAll"/>
+            <aop:after-throwing method="afterThrowingAdvice" pointcut-ref="selectAll" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

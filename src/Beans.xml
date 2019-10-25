@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="helloWorld" class="com.cz.spring.hello.HelloWorld">
+        <property name="message" value="Hello World!"/>
+    </bean>
+
+<!--    <bean id="students" class="com.cz.spring.di.constructor.Students">-->
+<!--        <constructor-arg ref="departments"/>-->
+<!--    </bean>-->
+<!--    <bean id="departments" class="com.cz.spring.di.constructor.Departments">-->
+<!--    </bean>-->
+
+
+    <!-- Definition for textEditor bean -->
+    <bean id="textEditor" class="com.cz.spring.di.setter.TextEditor">
+        <property name="spellChecker" ref="spellChecker"/>
+    </bean>
+
+    <!-- Definition for spellChecker bean -->
+    <bean id="spellChecker" class="com.cz.spring.di.setter.SpellChecker">
+    </bean>
+
+    <bean id="autowDemo" class="com.cz.spring.annotation.AutowDemo"/>
+    <bean id="autowDemo1" class="com.cz.spring.annotation.AutowDemo1"/>
+
+
+
+</beans>
